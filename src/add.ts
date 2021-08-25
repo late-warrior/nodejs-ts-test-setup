@@ -8,11 +8,3 @@ export function addNumbers(a, b) {
     console.log(a, b);
     return a + b;
 }
-
-export function newFun() {
-    return "new"
-}
-
-export function hoo() {
-    return "who"
-}

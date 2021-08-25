@@ -1,10 +1,11 @@
 {
     "compilerOptions": {
-      "outDir": "./dist",
-      "allowJs": true,
+      "module": "ES2020" ,
       "target": "ES2020",
-      "module": "ES2020",
-      "moduleResolution": "Node"
+      "outDir": "./dist",
+      "moduleResolution": "Node",
+      "allowJs": true,
+      "sourceMap": true
     },
     "include": ["./src/**/*", "./test/**/*"]
-  }
+}
