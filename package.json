@@ -1,0 +1,25 @@
+{
+  "name": "stuff",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "exports": "./src/index.js",
+  "scripts": {
+    "test": "mocha",
+    "tsc": "tsc",
+    "tsc:watch": "tsc --watch",
+    "test:watch": "mocha --watch",
+    "te": "node --experimental-loader ts-node/esm.mjs --require ts-node/register --experimental-specifier-resolution=node node_modules/.bin/mocha  --extension ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/mocha": "^9.0.0",
+    "@types/node": "^16.7.1",
+    "chai": "^4.3.4",
+    "mocha": "^9.1.0",
+    "ts-node": "^10.2.1",
+    "typescript": "^4.3.5"
+  }
+}
