@@ -1,5 +1,11 @@
 # NodeJS ESM Typescript Test setup
 
+![c8](https://img.shields.io/badge/c8-green)
+![nyc](https://img.shields.io/badge/nyc-blue)
+![mocha](https://img.shields.io/badge/mocha-yellow)
+![typescript](https://img.shields.io/badge/typescript-red)
+![ts-node](https://img.shields.io/badge/ts--node-orange)
+
 A minimal Typescript setup that demonstrates unit testing in NodeJS and generating coverage.  Since there are so 
 many moving parts in the test ecosystem, this is an attempt to isolate them separately and debug them individually
 
