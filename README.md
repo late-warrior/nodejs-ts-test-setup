@@ -3,16 +3,16 @@
 A minimal Typescript setup to make that demonstrates unit testing in NodeJS and generating coverage.  Since there are so 
 many moving parts in the test ecosystem, this is an attempt to isolate them separately and debug them individually
 
-# Concepts
+## Concepts
 
-<Diagram to explain how all this fits in together>
+> TODO: Diagram to explain how all this fits in together comes here
 
-## Compilation flags (in tsconfig.json)
+### Compilation flags (in tsconfig.json)
 
 * Specifying `module` is the most important - this governs how the output transpiled file will look like
 * target is useful for any `feature replacement` if need be
 * sourceMap is useful for debbugers
-## Build time vs on-the-fly compilation
+### Build time vs on-the-fly compilation
 
 * Build time compilation is the invocation of the typescript compiler through an npm script like `yarn compile`.  The compiled
 files are written  to the `dist` directory (or configured `outDir` in `tsconfig.json`)
@@ -20,13 +20,13 @@ files are written  to the `dist` directory (or configured `outDir` in `tsconfig.
 uses the same `tsconfig.json` file but does not write to `dist` - instead it uses a temporary directory and cleans it up soon after the module is loaded
 into memory
 
-## Enabling ESM in TS
+### Enabling ESM in TS
 
 * Tests are driven by `mocha`
 * `mocha` allows for specifying hooks that it passes on to nodejs - we specify the `ts-node/esm` hook to facilitate on-the-fly compilation of imports in test files
 * See `.mocharc.cjs` for full configuration used
 
-## Enabling coverage
+### Enabling coverage
 
 * Coverage is usually one layer above tests
 * You can generate coverage in 2 ways - 
@@ -37,31 +37,25 @@ into memory
 a way to make it work.  See [issue]()
 * Coverage can also be generated via c8 which used nodejs' native coverage support - this is far simpler
 to configure - see `.c8rc.json`
-## Alternative coverage approach
+### Alternative coverage approach
 
 * Add something like - `"instrument": "nyc instrument src in-src",` to your package.json to instrument
 * Modify your imports under the `test` directory to import from `in-src` wherever you import from `src`
 * Remove on-the-fly instrumentation (can run tests directly, instead of through nyc - i.e `yarn test-only`)
 
-# Other approaches tried
+## Features and Limitations
 
-* Use `ts-node` to do on the fly transpilation
-* This did not work for the NodeJS + ESM combination
-* An invocation like this also failed with an error - 'INVALID_MODULE_SPECIFIER' - `node --experimental-loader ts-node/esm.mjs --require ts-node/register --experimental-specifier-resolution=node node_modules/.bin/mocha  --extension ts`
-
-# Features
-
-* Run tests
-* Coverage (number not generated correctly)
+* Write source and tests in typescript
+* Generate accurate coverage information with c8
 * Watch tests (not working) - ESM watching is not supported in mochajs yet
-
-### Errors encountered
+* Coverage information generated with nyc not very accurate
+## Errors encountered
 
 A sampling of errors encountered - goes to show the many pieces of the puzzle here - 
 
-* *TypeError [ERR_INVALID_MODULE_SPECIFIER]*: Invalid module "file:///add_test.ts" 
+* **TypeError [ERR_INVALID_MODULE_SPECIFIER]**: Invalid module "file:///add_test.ts" 
 This happens if you don't teach mocha about how to load ESM modules - can be fixed  by the `"loader": "ts-node/esm"` in .mocharc.cjs
-* *ReferenceError: exports is not defined in ES module scope* - this happens when typescript transpiles your code to commonjs format and includes an exports object - since this code is subsequently imported by a test through an ESM loader, it breaks
-* *module is not defined in ES module scope* - fix is to rename nyc.config.js to nyc.config.cjs
+* **ReferenceError: exports is not defined in ES module scope** - this happens when typescript transpiles your code to commonjs format and includes an exports object - since this code is subsequently imported by a test through an ESM loader, it breaks
+* **Module is not defined in ES module scope** - fix is to rename nyc.config.js to nyc.config.cjs
 * We need to hook in the `@istanbuljs/esm-loader-hook` for nyc to generate the right coverage stats, but
-that fails with [ERR_UNKNOWN_FILE_EXTENSION].  It looks like setting this option for nyc disables the `"experimental-specifier-resolution": "node"` that we set for mocha (in `.mocharc.cjs`).  Run `test:nyc:fix` to reproduce this
+that fails with **[ERR_UNKNOWN_FILE_EXTENSION]**.  It looks like setting this option for nyc disables the `"experimental-specifier-resolution": "node"` that we set for mocha (in `.mocharc.cjs`).  Run `test:nyc:fix` to reproduce this
