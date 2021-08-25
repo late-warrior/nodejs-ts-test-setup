@@ -27,6 +27,7 @@ tests on them
 * Run tests
 * Coverage (number not generated correctly)
 * Watch tests (not working) - ESM watching is not supported in mochajs yet
+* Coverage works using c8 - this worked magically out of the box on first attempt - hurray !
 # Errors
 
 * TypeError [ERR_INVALID_MODULE_SPECIFIER]: Invalid module "file:///home/sriram/projects/test-setup/test/add_test.ts" - if it cannot load typescript esm (the "loader": "ts-node/esm" in .mocharc.cjs)

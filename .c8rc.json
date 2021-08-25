@@ -1,0 +1,6 @@
+{
+    "all": true,
+    "reporter": ["text-summary", "html"],
+    "report-dir": "./c8-coverage",
+    "src": ["./src"]
+}

@@ -10,6 +10,7 @@
     "instrument": "nyc instrument src in-src",
     "test:plain": "mocha",
     "coverage": "nyc report",
+    "c8": "c8 mocha",
     "compile": "tsc",
     "compile:watch": "tsc --watch"
   },
@@ -21,6 +22,7 @@
     "@istanbuljs/nyc-config-typescript": "^1.0.1",
     "@types/mocha": "^9.0.0",
     "@types/node": "^16.7.1",
+    "c8": "^7.8.0",
     "chai": "^4.3.4",
     "mocha": "^9.1.0",
     "nyc": "^15.1.0",
