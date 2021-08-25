@@ -3,5 +3,5 @@ module.exports = {
     // OPTIONAL if you want coverage reported on every file, including those that aren't tested:
     "all": true,
     "reporter": ["text-summary", "html"],
-    "report-dir": "./coverage",
+    "report-dir": "./nyc-coverage",
 }

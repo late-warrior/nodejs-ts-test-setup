@@ -2,5 +2,5 @@ node_modules
 dist
 .nyc_output
 yarn-error.log
-coverage
-
+nyc-coverage
+c8-coverage
