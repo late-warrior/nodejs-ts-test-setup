@@ -1,8 +1,14 @@
 # NodeJS ESM Typescript Test setup
 
-A minimal Typescript setup to make that demonstrates unit testing in NodeJS and generating coverage.  Since there are so 
+A minimal Typescript setup that demonstrates unit testing in NodeJS and generating coverage.  Since there are so 
 many moving parts in the test ecosystem, this is an attempt to isolate them separately and debug them individually
 
+## Useful scripts
+
+* `yarn test` - tests with coverage by c8 - coverage reporter in `c8-coverage` folder
+* `yarn test:nyc` - tests wth coverage by nyc - numbers not accurate, attempted fix - `yarn test:nyc:fix` does not work as well
+* `yarn test:watch` - does not work yet - limitation of mocha + ESM
+* `yarn test-only` - run tests without coverage
 ## Concepts
 
 > TODO: Diagram to explain how all this fits in together comes here
